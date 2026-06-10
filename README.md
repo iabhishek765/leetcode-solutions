@@ -18,7 +18,7 @@
 |---|---|
 | 🟢 Easy | 0 |
 | 🟡 Medium | 5 |
-| 🔴 Hard | 0 |
+| 🔴 Hard | 1 |
 | **Total** | **6** |
 
 ## 🧠 Pattern Focus Areas
