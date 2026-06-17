@@ -29,7 +29,7 @@
 - Graphs (for GNNs & Graph ML)
 
 ## 📅 Streak
-**Started:** June 2026 | **Current Streak:** 🔥 10 days
+**Started:** June 2026 | **Current Streak:** 🔥 10 days  
 
 ---
 
