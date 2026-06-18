@@ -26,11 +26,11 @@
 - Sliding Window
 - Binary Search
 - Dynamic Programming
-- Graphs (for GNNs & Graph ML)
+- Graphs (for GNNs & Graph ML)  
 
 ## 📅 Streak
 **Started:** June 2026 | **Current Streak:** 🔥 10 days  
 
 ---
 
-## 📁 Structure
+## 📁 Structure  
