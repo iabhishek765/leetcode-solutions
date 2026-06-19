@@ -16,10 +16,10 @@
 
 | Difficulty | Solved |
 |---|---|
-| 🟢 Easy | 5 |
+| 🟢 Easy | 6 |
 | 🟡 Medium | 13 |
 | 🔴 Hard | 5 |
-| **Total** | **23** |   
+| **Total** | **24** |   
 
 ## 🧠 Pattern Focus Areas
 - Arrays & Hashing
