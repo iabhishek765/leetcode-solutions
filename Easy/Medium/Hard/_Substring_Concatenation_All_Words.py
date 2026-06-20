@@ -19,24 +19,27 @@ class Solution(object):
         
         word_len = len(words[0])
         num_words = len(words)
+        total_len = word_len * num_words
+        n = len(s)
+        
+        if n < total_len:
+            return []
+        
         word_count = {}
         for w in words:
             word_count[w] = word_count.get(w, 0) + 1
         
         result = []
-        n = len(s)
-        total_len = word_len * num_words
-        
-        if n < total_len:
-            return []
         
         for i in range(word_len):
             left = i
             count = 0
             window = {}
+            j = i
             
-            for j in range(i, n - word_len + 1, word_len):
+            while j <= n - word_len:
                 word = s[j:j + word_len]
+                j += word_len
                 
                 if word in word_count:
                     window[word] = window.get(word, 0) + 1
@@ -57,6 +60,6 @@ class Solution(object):
                 else:
                     window = {}
                     count = 0
-                    left = j + word_len
+                    left = j
         
         return result
