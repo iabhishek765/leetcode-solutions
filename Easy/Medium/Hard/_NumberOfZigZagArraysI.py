@@ -5,6 +5,7 @@ ML Connection: Alternating-state DP (inc/dec tracking) mirrors
 state-transition modeling used in sequence models like HMMs.
 """
 
+
 class Solution(object):
     def zigZagArrays(self, n, l, r):
         MOD = 10**9 + 7
@@ -13,28 +14,51 @@ class Solution(object):
         if n == 1:
             return m % MOD
 
-        inc = [v for v in range(m)]          # count of values smaller
-        dec = [m - 1 - v for v in range(m)]  # count of values larger
+        size = 2 * m  # first m = inc, last m = dec
 
-        for step in range(3, n + 1):
-            pref_dec = [0] * (m + 1)
-            for v in range(m):
-                pref_dec[v + 1] = (pref_dec[v] + dec[v]) % MOD
-
-            suf_inc = [0] * (m + 1)
-            for v in range(m - 1, -1, -1):
-                suf_inc[v] = (suf_inc[v + 1] + inc[v]) % MOD
-
-            new_inc = [0] * m
-            new_dec = [0] * m
-            for v in range(m):
-                new_inc[v] = pref_dec[v]        # sum dec[u], u < v
-                new_dec[v] = suf_inc[v + 1]      # sum inc[u], u > v
-
-            inc, dec = new_inc, new_dec
-
-        ans = 0
+        
+        M = [[0] * size for _ in range(size)]
         for v in range(m):
-            ans = (ans + inc[v] + dec[v]) % MOD
+            for u in range(v):
+                M[v][m + u] = 1
+            for u in range(v + 1, m):
+                M[m + v][u] = 1
 
-        return ans
+        def mat_mult(A, B):
+            n_ = len(A)
+            res = [[0] * n_ for _ in range(n_)]
+            for i in range(n_):
+                Ai = A[i]
+                for k in range(n_):
+                    if Ai[k]:
+                        a = Ai[k]
+                        Bk = B[k]
+                        ri = res[i]
+                        for j in range(n_):
+                            ri[j] = (ri[j] + a * Bk[j]) % MOD
+            return res
+
+        def mat_pow(M, p):
+            n_ = len(M)
+            result = [[1 if i == j else 0 for j in range(n_)] for i in range(n_)]
+            base = M
+            while p > 0:
+                if p & 1:
+                    result = mat_mult(result, base)
+                base = mat_mult(base, base)
+                p >>= 1
+            return result
+
+        vec = [v for v in range(m)] + [m - 1 - v for v in range(m)]
+
+        Mp = mat_pow(M, n - 2)
+
+        final = [0] * size
+        for i in range(size):
+            s = 0
+            for j in range(size):
+                if Mp[i][j]:
+                    s += Mp[i][j] * vec[j]
+            final[i] = s % MOD
+
+        return sum(final) % MOD
