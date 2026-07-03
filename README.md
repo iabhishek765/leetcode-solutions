@@ -17,8 +17,8 @@
 | Difficulty | Solved |
 |---|---|
 | 🟢 Easy | 8 |
-| 🟡 Medium | 25 |
-| 🔴 Hard | 15 |
+| 🟡 Medium | 26 |
+| 🔴 Hard | 14 |
 | **Total** | **48** |   
 
 ## 🧠 Pattern Focus Areas
