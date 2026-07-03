@@ -1,54 +1,58 @@
 """
 LC#3620 - Network Recovery Pathways [Hard]
-Topic: Binary Search + Dijkstra (Modified)
-ML Connection: Finding max-min cost paths under constraints mirrors 
-resource-constrained routing in distributed ML systems — e.g., 
-maximizing the weakest link in a model-parallel training pipeline.
+Topic: Binary Search + Topological Sort DP (DAG)
+ML Connection: DAG shortest path with constraints mirrors 
+computation graph optimization in ML frameworks like PyTorch.
 """
 
-import heapq
-from collections import defaultdict
+from collections import defaultdict, deque
 
 class Solution(object):
     def findMaxPathScore(self, edges, online, k):
         n = len(online)
         graph = defaultdict(list)
+        in_degree = [0] * n
+        all_costs = set()
+
         for u, v, cost in edges:
             graph[u].append((v, cost))
+            in_degree[v] += 1
+            all_costs.add(cost)
 
-        # costs sorted uniquely for binary search
-        all_costs = sorted(set(c for _, _, c in edges))
+        # Topological sort once (reuse for all binary search checks)
+        topo = []
+        temp = in_degree[:]
+        q = deque([i for i in range(n) if temp[i] == 0])
+        while q:
+            node = q.popleft()
+            topo.append(node)
+            for v, _ in graph[node]:
+                temp[v] -= 1
+                if temp[v] == 0:
+                    q.append(v)
 
-        def canAchieve(min_score):
-            # Dijkstra: minimize total cost, only use edges >= min_score
-            # only traverse online intermediate nodes
+        all_costs = sorted(all_costs)
+
+        def canReach(min_cost):
             dist = [float('inf')] * n
             dist[0] = 0
-            heap = [(0, 0)]  # (total_cost, node)
-
-            while heap:
-                total, u = heapq.heappop(heap)
-                if total > dist[u]:
+            for u in topo:
+                if dist[u] == float('inf'):
                     continue
-                if u == n - 1:
-                    return True
                 for v, cost in graph[u]:
-                    if cost < min_score:
+                    if cost < min_cost:
                         continue
                     if v != n - 1 and not online[v]:
                         continue
-                    new_cost = total + cost
-                    if new_cost <= k and new_cost < dist[v]:
-                        dist[v] = new_cost
-                        heapq.heappush(heap, (new_cost, v))
+                    nd = dist[u] + cost
+                    if nd < dist[v]:
+                        dist[v] = nd
+            return dist[n - 1] <= k
 
-            return dist[n-1] <= k
-
-        ans = -1
-        lo, hi = 0, len(all_costs) - 1
+        lo, hi, ans = 0, len(all_costs) - 1, -1
         while lo <= hi:
             mid = (lo + hi) // 2
-            if canAchieve(all_costs[mid]):
+            if canReach(all_costs[mid]):
                 ans = all_costs[mid]
                 lo = mid + 1
             else:
