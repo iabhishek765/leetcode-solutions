@@ -18,8 +18,8 @@
 |---|---|
 | 🟢 Easy | 9 |
 | 🟡 Medium | 31 |
-| 🔴 Hard | 16 |
-| **Total** | **56** |   
+| 🔴 Hard | 18 |
+| **Total** | **58** |   
 
 ## 🧠 Pattern Focus Areas
 - Arrays & Hashing
