@@ -6,44 +6,76 @@ finding mirrors how approximate nearest neighbor search works in
 vector databases for ML retrieval systems.
 """
 
-from collections import deque
 import bisect
 
 class Solution(object):
     def pathExistenceQueries(self, n, nums, maxDiff, queries):
-        # sort indices by nums value for range-based neighbor lookup
-        sorted_idx = sorted(range(n), key=lambda i: nums[i])
-        sorted_vals = [nums[i] for i in sorted_idx]
-        rank = [0] * n  # rank[node] = position in sorted_idx
-        for p, i in enumerate(sorted_idx):
-            rank[i] = p
+        # Sort nodes based on nums values
+        order = sorted(range(n), key=lambda i: nums[i])
+        vals = [nums[i] for i in order]
 
-        def bfs(src, dst):
-            if src == dst:
-                return 0
-            dist = [-1] * n
-            dist[src] = 0
-            q = deque([src])
-            # unvisited positions in sorted order
-            unvisited = list(range(n))
-            unvisited_set = set(range(n))
-            unvisited_set.remove(src)
+        # rank[node] = position in sorted order
+        rank = [0] * n
+        for i, node in enumerate(order):
+            rank[node] = i
 
-            while q:
-                u = q.popleft()
-                lo = bisect.bisect_left(sorted_vals, nums[u] - maxDiff)
-                hi = bisect.bisect_right(sorted_vals, nums[u] + maxDiff)
-                to_visit = []
-                for p in range(lo, hi):
-                    v = sorted_idx[p]
-                    if v in unvisited_set:
-                        to_visit.append(v)
-                for v in to_visit:
-                    unvisited_set.remove(v)
-                    dist[v] = dist[u] + 1
-                    if v == dst:
-                        return dist[v]
-                    q.append(v)
-            return -1
+        # next_pos[i] = farthest position reachable
+        # from position i in one step
+        next_pos = [0] * n
 
-        return [bfs(u, v) for u, v in queries]
+        for i in range(n):
+            next_pos[i] = bisect.bisect_right(
+                vals, vals[i] + maxDiff
+            ) - 1
+
+        # Binary lifting table
+        LOG = n.bit_length()
+        jump = [next_pos]
+
+        for k in range(1, LOG):
+            prev = jump[k - 1]
+            curr = [0] * n
+
+            for i in range(n):
+                curr[i] = prev[prev[i]]
+
+            jump.append(curr)
+
+        answer = []
+
+        # Process every query
+        for u, v in queries:
+            left = rank[u]
+            right = rank[v]
+
+            if left > right:
+                left, right = right, left
+
+            # Same node
+            if left == right:
+                answer.append(0)
+                continue
+
+            # Check if path is impossible
+            if next_pos[left] == left:
+                answer.append(-1)
+                continue
+
+            steps = 0
+            current = left
+
+            # Use binary lifting
+            for k in range(LOG - 1, -1, -1):
+                nxt = jump[k][current]
+
+                if nxt < right and nxt > current:
+                    current = nxt
+                    steps += (1 << k)
+
+            # Final jump
+            if next_pos[current] >= right:
+                answer.append(steps + 1)
+            else:
+                answer.append(-1)
+
+        return answer
