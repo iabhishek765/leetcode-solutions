@@ -16,10 +16,10 @@
 
 | Difficulty | Solved |
 |---|---|
-| 🟢 Easy | 9 |
-| 🟡 Medium | 33 |
+| 🟢 Easy | 10 |
+| 🟡 Medium | 34 |
 | 🔴 Hard | 18 |
-| **Total** | **60** |   
+| **Total** | **62** |   
 
 ## 🧠 Pattern Focus Areas
 - Arrays & Hashing
@@ -29,7 +29,7 @@
 - Graphs (for GNNs & Graph ML)  
 
 ## 📅 Streak
-**Started:** June 2026 | **Current Streak:** 🔥 30 days  
+**Started:** June 2026 | **Current Streak:** 🔥 35 days  
 
 ---
 
