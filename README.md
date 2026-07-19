@@ -17,9 +17,9 @@
 | Difficulty | Solved |
 |---|---|
 | 🟢 Easy | 13 |
-| 🟡 Medium | 38 |
+| 🟡 Medium | 40 |
 | 🔴 Hard | 21 |
-| **Total** | **72** |   
+| **Total** | **74** |   
 
 ## 🧠 Pattern Focus Areas
 - Arrays & Hashing
