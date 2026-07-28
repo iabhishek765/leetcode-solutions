@@ -28,7 +28,3 @@
 - Dynamic Programming
 - Graphs (for GNNs & Graph ML)  
 
-
----
-
-## 📁 Structure  
