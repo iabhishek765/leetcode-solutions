@@ -7,7 +7,6 @@
 [![Python](https://img.shields.io/badge/Python-3.9+-3776AB?style=flat&logo=python&logoColor=white)](https://python.org)
 [![LeetCode](https://img.shields.io/badge/LeetCode-iabhishek765-FFA116?style=flat&logo=leetcode&logoColor=white)](https://leetcode.com/u/Abhishek_0222/)
 [![GitHub](https://img.shields.io/badge/GitHub-iabhishek765-181717?style=flat&logo=github)](https://github.com/iabhishek765)
-
 </div> 
 
 ---
@@ -17,9 +16,9 @@
 | Difficulty | Solved |
 |---|---|
 | 🟢 Easy | 16 |
-| 🟡 Medium | 46 |
+| 🟡 Medium | 47 |
 | 🔴 Hard | 23 |
-| **Total** | **85** |   
+| **Total** | **86** |   
 
 ## 🧠 Pattern Focus Areas
 - Arrays & Hashing
