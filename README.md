@@ -28,8 +28,6 @@
 - Dynamic Programming
 - Graphs (for GNNs & Graph ML)  
 
-## 📅 Streak
-**Started:** June 2026 | **Current Streak:** 🔥 45 days  
 
 ---
 
