@@ -1,29 +1,36 @@
-<div align="center">
+<h1 align="center">🧠 LeetCode Solutions</h1>
 
-# 🧩 LeetCode Solutions
+<p align="center">
+Daily DSA in Python + SQL practice — focused on patterns used in AI/ML engineering
+</p>
 
-### Daily DSA practice in Python — focused on patterns used in AI/ML engineering
-
-[![Python](https://img.shields.io/badge/Python-3.9+-3776AB?style=flat&logo=python&logoColor=white)](https://python.org)
-[![LeetCode](https://img.shields.io/badge/LeetCode-iabhishek765-FFA116?style=flat&logo=leetcode&logoColor=white)](https://leetcode.com/u/Abhishek_0222/)
-[![GitHub](https://img.shields.io/badge/GitHub-iabhishek765-181717?style=flat&logo=github)](https://github.com/iabhishek765)
-</div> 
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.9+-blue?logo=python" />
+  <img src="https://img.shields.io/badge/SQL-MySQL-orange?logo=mysql" />
+  <img src="https://img.shields.io/badge/LeetCode-iabhishek765-orange?logo=leetcode" />
+  <img src="https://img.shields.io/badge/GitHub-iabhishek765-black?logo=github" />
+</p>
 
 ---
 
 ## 📊 Progress Tracker
 
+### 🐍 Python / DSA
 | Difficulty | Solved |
-|---|---|
-| 🟢 Easy | 24 |
-| 🟡 Medium | 52 |
-| 🔴 Hard | 23 |
-| **Total** | **99** |   
+|------------|--------|
+| 🟢 Easy    | 24     |
+| 🟡 Medium  | 52     |
+| 🔴 Hard    | 23     |
+| **Total**  | **99** |
 
-## 🧠 Pattern Focus Areas
-- Arrays & Hashing
-- Sliding Window
-- Binary Search
-- Dynamic Programming
-- Graphs (for GNNs & Graph ML)  
+### 🗄️ SQL
+| Difficulty | Solved |
+|------------|--------|
+| 🟢 Easy    | 0      |
+| 🟡 Medium  | 0      |
+| 🔴 Hard    | 0      |
+| **Total**  | **0**  |
 
+---
+
+## 📁 Folder Structure
