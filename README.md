@@ -19,9 +19,9 @@ Daily DSA in Python + SQL practice — focused on patterns used in AI/ML enginee
 | Difficulty | Solved |
 |------------|--------|
 | 🟢 Easy    | 24     |
-| 🟡 Medium  | 52     |
+| 🟡 Medium  | 53     |
 | 🔴 Hard    | 23     |
-| **Total**  | **99** |
+| **Total**  | **100** |
 
 ### 🗄️ SQL
 | Difficulty | Solved |
