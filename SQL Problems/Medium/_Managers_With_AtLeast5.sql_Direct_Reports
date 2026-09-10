@@ -1,0 +1,15 @@
+-- LC#570 - Managers with at Least 5 Direct Reports [Medium]
+-- Topic: GROUP BY / HAVING / JOIN
+-- ML Connection: Counting hierarchical relationships mirrors how 
+-- graph-based ML models compute node degree — used in organizational 
+-- network analysis and influence prediction models.
+
+SELECT e.name
+FROM Employee e
+JOIN (
+    SELECT managerId
+    FROM Employee
+    WHERE managerId IS NOT NULL
+    GROUP BY managerId
+    HAVING COUNT(*) >= 5
+) m ON e.id = m.managerId;
