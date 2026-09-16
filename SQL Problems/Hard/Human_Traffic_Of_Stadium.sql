@@ -1,18 +1,19 @@
 -- LC#601 - Human Traffic of Stadium [Hard]
--- Topic: Self Join / Consecutive Row Detection
--- ML Connection: Detecting consecutive high-traffic periods mirrors 
--- anomaly detection in time-series ML — identifying sustained 
--- high-activity windows in streaming data pipelines.
+-- Topic: Window Functions / CTE / Consecutive Groups
 
-WITH cte AS (
-    SELECT DISTINCT s1.*
-    FROM Stadium s1
-    JOIN Stadium s2 ON s2.id IN (s1.id - 1, s1.id + 1)
-    JOIN Stadium s3 ON s3.id IN (s1.id - 1, s1.id + 1)
-        AND s2.id != s3.id
-    WHERE s1.people >= 100
-      AND s2.people >= 100
-      AND s3.people >= 100
+WITH filtered AS (
+    SELECT *,
+        id - ROW_NUMBER() OVER (ORDER BY id) AS grp
+    FROM Stadium
+    WHERE people >= 100
+),
+valid_groups AS (
+    SELECT grp
+    FROM filtered
+    GROUP BY grp
+    HAVING COUNT(*) >= 3
 )
-SELECT * FROM cte
+SELECT id, visit_date, people
+FROM filtered
+WHERE grp IN (SELECT grp FROM valid_groups)
 ORDER BY visit_date;
