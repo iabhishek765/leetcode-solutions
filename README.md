@@ -15,7 +15,7 @@ Daily DSA in Python + SQL practice — focused on patterns used in AI/ML enginee
 
 ## 📊 Progress Tracker
 
-### DSA
+### 👨‍💻 DSA
 | Difficulty | Solved |
 |------------|--------|
 | 🟢 Easy    | 35     |
