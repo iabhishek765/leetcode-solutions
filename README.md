@@ -32,5 +32,3 @@ Daily DSA in Python + SQL practice — focused on patterns used in AI/ML enginee
 | **Total**  | **40**  |
 
 ---
-
-## 📁 Folder Structure
