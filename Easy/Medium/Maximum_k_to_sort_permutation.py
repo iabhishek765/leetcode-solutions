@@ -17,29 +17,17 @@ ML Connection:
   optimization problems in reinforcement learning
 """
 
-from collections import defaultdict
-
 class Solution:
-    def maximumK(self, nums):
-        n = len(nums)
-        sorted_nums = sorted(nums)
-
-        if nums == sorted_nums:
+    def sortPermutation(self, nums: list[int]) -> int:
+        displaced = [nums[i] for i in range(len(nums)) if nums[i] != i]
+        
+        
+        if not displaced:
             return 0
-
-        def can_sort(k):
-            groups = defaultdict(list)
-            for i, v in enumerate(nums):
-                groups[v & k].append(i)
-            for mask, indices in groups.items():
-                indices.sort()
-                vals = sorted(nums[i] for i in indices)
-                if vals != [sorted_nums[i] for i in indices]:
-                    return False
-            return True
-
-        ans = 0
-        for k in range(max(nums) + 1):
-            if can_sort(k):
-                ans = k
+        
+        
+        ans = displaced[0]
+        for val in displaced[1:]:
+            ans &= val
+            
         return ans
