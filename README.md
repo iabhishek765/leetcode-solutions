@@ -1,7 +1,7 @@
 <h1 align="center">🧠 LeetCode Solutions</h1>
 
 <p align="center">
-Daily DSA in Python + SQL practice — focused on patterns used in AI/ML engineering
+Daily DSA in Python + SQL practice - focused on patterns used in AI/ML engineering
 </p>
 
 <p align="center">
